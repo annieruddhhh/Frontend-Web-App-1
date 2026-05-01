@@ -1,4 +1,3 @@
-
 function addTask() {
   const input = document.getElementById("taskInput");
   const task = input.value;
@@ -11,6 +10,7 @@ function addTask() {
   document.getElementById("taskList").appendChild(li);
   input.value = "";
 }
+
 
 const BASE_URL = "http://127.0.0.1:5000"                     //address of flask backend
 
