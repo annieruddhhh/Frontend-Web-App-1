@@ -3,84 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- this makes the website look good on mobile too -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Tracker</title>
-    <!-- linking our css file -->
+    <title>HabitFlow — My Habits</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='32' font-size='32'>✅</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- top navigation bar -->
     <nav class="navbar">
-        <h1>Habit Tracker</h1>
-        <!-- search bar to filter habits -->
-        <input type="text" id="search-bar" placeholder="Search habits..." />
+        <span class="logo">HabitFlow</span>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="add-habit.html">Add Habit</a></li>
+        </ul>
     </nav>
 
-    <!-- main content area -->
-    <div class="container">
+    <main>
+        <h1>My Habits</h1>
 
-        <!-- stats section at the top -->
-        <div class="stats-row">
-            <div class="stat-box">
-                <p class="stat-number" id="total-habits">0</p>
-                <p class="stat-label">Total Habits</p>
-            </div>
-            <div class="stat-box">
-                <p class="stat-number" id="done-today">0</p>
-                <p class="stat-label">Done Today</p>
-            </div>
-            <div class="stat-box">
-                <p class="stat-number" id="best-streak">0</p>
-                <p class="stat-label">Best Streak</p>
-            </div>
+        <!-- Summary bar - filled by JS -->
+        <div id="summary-bar" class="summary-bar hidden">
+            <span id="summary-total"></span>
+            <span id="summary-done"></span>
+            <span id="summary-streak"></span>
         </div>
 
-        <!-- form to add a new habit -->
-        <div class="form-section">
-            <h2>Add a New Habit</h2>
-            <div class="form-row">
-                <!-- habit name input -->
-                <input type="text" id="habit-name" placeholder="Habit name" />
+        <div id="habits-container">Loading...</div>
+    </main>
 
-                <!-- category dropdown -->
-                <select id="habit-category">
-                    <option value="">Select Category</option>
-                    <option value="Health">Health</option>
-                    <option value="Fitness">Fitness</option>
-                    <option value="Study">Study</option>
-                    <option value="Other">Other</option>
-                </select>
-
-                <!-- frequency dropdown -->
-                <select id="habit-frequency">
-                    <option value="">Select Frequency</option>
-                    <option value="Daily">Daily</option>
-                    <option value="Weekly">Weekly</option>
-                </select>
-
-                <!-- add button -->
-                <button onclick="addHabit()">+ Add Habit</button>
-            </div>
-
-            <!-- error message shows here if validation fails -->
-            <p id="form-error" style="color: red; margin-top: 8px;"></p>
-        </div>
-
-        <!-- this is where all habit cards will appear -->
-        <h2 class="section-title">Your Habits</h2>
-        <div id="habits-container">
-            <!-- habit cards are added here by javascript -->
-        </div>
-
-    </div>
-
-    <!-- linking our javascript file -->
-    <!-- we put this at the bottom so html loads first -->
-    <script src="app.js"></script>
-
+    <script src="home.js"></script>
 </body>
 
 </html>
