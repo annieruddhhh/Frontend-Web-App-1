@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HabitFlow — Add Habit</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='32' font-size='32'>✅</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <span class="logo">HabitFlow</span>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="add-habit.html" class="active">Add Habit</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Add New Habit</h1>
+
+        <div id="add-form">
+            <label>Habit Name</label>
+            <input type="text" id="habit-name" placeholder="e.g. Drink 2L water">
+            <p id="error-msg" class="error hidden"></p>
+            <button id="add-btn" onclick="addHabit()">Add Habit</button>
+            <p id="success-msg" class="success hidden">
+                Habit added! <a href="index.html">View all →</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="add-habit.js"></script>
+</body>
+
+</html>
