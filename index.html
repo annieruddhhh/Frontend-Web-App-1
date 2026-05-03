@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>HabitFlow — My Habits</title>
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='32' font-size='32'>✅</text></svg>">
+    <title>HabitFlow</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='32' font-size='32'>✅</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <nav class="navbar">
-        <span class="logo">HabitFlow</span>
-        <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="add-habit.html">Add Habit</a></li>
-        </ul>
-    </nav>
+<nav class="navbar">
+    <span class="logo">HabitFlow</span>
+    <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="add-habit.html">Add Habit</a></li>
+    </ul>
+</nav>
 
-    <main>
-        <h1>My Habits</h1>
+<div class="container">
 
-        <!-- Summary bar - filled by JS -->
-        <div id="summary-bar" class="summary-bar hidden">
-            <span id="summary-total"></span>
-            <span id="summary-done"></span>
-            <span id="summary-streak"></span>
+    <h1 class="page-title">My Habits</h1>
+
+    <!-- stats row -->
+    <div class="stats-row">
+        <div class="stat-box">
+            <p class="stat-number" id="total-habits">0</p>
+            <p class="stat-label">Total Habits</p>
         </div>
+        <div class="stat-box">
+            <p class="stat-number" id="done-today">0</p>
+            <p class="stat-label">Done Today</p>
+        </div>
+        <div class="stat-box">
+            <p class="stat-number" id="best-streak">0</p>
+            <p class="stat-label">Best Streak</p>
+        </div>
+    </div>
 
-        <div id="habits-container">Loading...</div>
-    </main>
+    <!-- search bar -->
+    <input type="text" id="search-bar" placeholder="Search habits..." class="search-bar" />
 
-    <script src="home.js"></script>
+    <!-- habits appear here -->
+    <div id="habits-container"></div>
+
+</div>
+
+<script src="home.js"></script>
 </body>
-
 </html>

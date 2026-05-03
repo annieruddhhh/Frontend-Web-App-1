@@ -1,406 +1,369 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
-
+/* reset */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'DM Sans', sans-serif;
-    background: #0f0f13;
-    color: #f0ede8;
+    background-color: #0f0f0f;
+    color: #ffffff;
+    font-family: 'DM Sans', Arial, sans-serif;
     min-height: 100vh;
 }
 
-/* ---- NAVBAR ---- */
+/* =====================
+   NAVBAR
+===================== */
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 2.5rem;
-    background: #0f0f13;
-    border-bottom: 1px solid #222230;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid #222222;
+    background-color: #0f0f0f;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.5rem;
+    font-family: 'Syne', Arial, sans-serif;
+    font-size: 26px;
     font-weight: 800;
-    color: #c8f567;
-    letter-spacing: -0.5px;
+    color: #c8f135;
 }
 
+/* removes the bullet points from nav list */
 .navbar ul {
     list-style: none;
     display: flex;
+    gap: 32px;
 }
 
-.navbar ul li {
-    margin-left: 2rem;
-}
-
-.navbar a {
-    color: #6b6b80;
+.navbar ul li a {
     text-decoration: none;
-    font-size: 0.9rem;
+    color: #888888;
+    font-size: 15px;
     font-weight: 500;
-    letter-spacing: 0.3px;
-    padding-bottom: 3px;
-    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
 }
 
-.navbar a.active {
-    color: #f0ede8;
-    border-bottom: 2px solid #c8f567;
+.navbar ul li a.active {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
 }
 
-.navbar a:hover {
-    color: #f0ede8;
+.navbar ul li a:hover {
+    color: #ffffff;
 }
 
-/* ---- MAIN AREA ---- */
-main {
-    max-width: 680px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
+/* =====================
+   TWO COLUMN LAYOUT
+===================== */
+.page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 960px;
+    margin: 60px auto;
+    padding: 0 32px;
+    align-items: start;
 }
 
-h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
+/* left big title */
+.left h1 {
+    font-family: 'Syne', Arial, sans-serif;
+    font-size: 72px;
     font-weight: 800;
-    margin-bottom: 0.4rem;
-    letter-spacing: -1px;
-    color: #f0ede8;
+    line-height: 1;
+    color: #ffffff;
+    margin-bottom: 16px;
 }
 
-/* ---- HABIT CARD ---- */
-.habit-card {
-    background: #18181f;
-    border-radius: 16px;
-    padding: 1.4rem 1.6rem;
-    margin-bottom: 1rem;
-    border: 1px solid #222230;
-    transition: border-color 0.2s, transform 0.15s;
+.left p {
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
-.habit-card:hover {
-    border-color: #35354a;
-    transform: translateY(-1px);
-}
-
-.habit-info h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-    color: #f0ede8;
-}
-
-.streak {
-    font-size: 0.8rem;
-    color: #c8f567;
-    font-weight: 500;
-    background: rgba(200, 245, 103, 0.1);
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 20px;
-}
-
-/* ---- BUTTON GROUP ---- */
-.btn-group {
-    margin-top: 1rem;
-}
-
-.btn-group button {
-    margin-right: 8px;
-    margin-top: 6px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    padding: 0.45rem 1rem;
-    transition: opacity 0.15s, transform 0.1s;
-}
-
-.btn-group button:hover {
-    opacity: 0.85;
-    transform: translateY(-1px);
-}
-
-/* ---- INDIVIDUAL BUTTONS ---- */
-.done-btn {
-    background: #c8f567;
-    color: #0f0f13;
-}
-
-.done-btn.done,
-.done-btn:disabled {
-    background: #222230;
-    color: #6b6b80;
-    cursor: default;
-    transform: none;
-    opacity: 1;
-}
-
-.edit-btn {
-    background: #2a2a3a;
-    color: #a0a0be;
-    border: 1px solid #35354a !important;
-}
-
-.delete-btn {
-    background: rgba(239, 68, 68, 0.12);
-    color: #f87171;
-    border: 1px solid rgba(239, 68, 68, 0.2) !important;
-}
-
-.suggest-btn {
-    background: rgba(167, 139, 250, 0.12);
-    color: #a78bfa;
-    border: 1px solid rgba(167, 139, 250, 0.2) !important;
-}
-
-/* ---- EDIT BOX ---- */
-.edit-box {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #222230;
-}
-
-.edit-box input {
-    padding: 0.5rem 0.9rem;
-    border: 1px solid #35354a;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    width: 58%;
-    margin-right: 8px;
-    background: #0f0f13;
-    color: #f0ede8;
-    font-family: 'DM Sans', sans-serif;
-}
-
-.edit-box input:focus {
-    outline: none;
-    border-color: #c8f567;
-}
-
-.edit-box button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    background: #c8f567;
-    color: #0f0f13;
-    margin-right: 6px;
-    transition: opacity 0.15s;
-}
-
-.edit-box button:hover {
-    opacity: 0.85;
-}
-
-.edit-box button:last-child {
-    background: #2a2a3a;
-    color: #6b6b80;
-    border: 1px solid #35354a;
-}
-
-/* ---- TIPS BOX ---- */
-.tips-box {
-    margin-top: 1rem;
-    background: rgba(167, 139, 250, 0.07);
-    border: 1px solid rgba(167, 139, 250, 0.15);
-    border-radius: 10px;
-    padding: 0.9rem 1.1rem;
-    font-size: 0.88rem;
-    color: #c4b5fd;
-}
-
-.tips-box strong {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #a78bfa;
-    font-size: 0.85rem;
-}
-
-.tips-box ul {
-    padding-left: 1.1rem;
-}
-
-.tips-box li {
-    margin-bottom: 0.35rem;
-    color: #b8b0d8;
-}
-
-/* ---- ADD HABIT FORM ---- */
+/* =====================
+   FORM CARD
+===================== */
 #add-form {
-    background: #18181f;
-    padding: 2.2rem;
+    background-color: #161616;
+    border: 1px solid #222222;
     border-radius: 16px;
-    border: 1px solid #222230;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-#add-form label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 0.6rem;
-    font-size: 0.85rem;
-    color: #a0a0be;
+/* each field group */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #0f0f0f;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    font-family: 'DM Sans', Arial, sans-serif;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: #c8f135;
+}
+
+.field input::placeholder {
+    color: #333333;
+}
+
+.field select option {
+    background-color: #161616;
+    color: #ffffff;
+}
+
+/* add button */
+#add-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: #c8f135;
+    color: #0f0f0f;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', Arial, sans-serif;
+}
+
+#add-btn:hover { background-color: #b8e020; }
+#add-btn:disabled { background-color: #5a6e15; cursor: not-allowed; }
+
+/* messages */
+.error { color: #cf4f4f; font-size: 13px; }
+.success { color: #c8f135; font-size: 13px; }
+.success a { color: #c8f135; font-weight: 600; text-decoration: none; }
+.hidden { display: none; }
+
+/* =====================
+   INDEX PAGE STATS
+===================== */
+.stats-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-box {
+    flex: 1;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+}
+
+.stat-number {
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: #c8f135;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #666666;
+    margin-top: 4px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-#add-form input {
+/* =====================
+   INDEX PAGE SEARCH
+===================== */
+.search-bar {
     width: 100%;
-    padding: 0.85rem 1.1rem;
-    border: 1px solid #35354a;
+    padding: 14px 18px;
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
     border-radius: 10px;
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-    background: #0f0f13;
-    color: #f0ede8;
-    font-family: 'DM Sans', sans-serif;
-    transition: border-color 0.2s;
-}
-
-#add-form input::placeholder {
-    color: #3a3a50;
-}
-
-#add-form input:focus {
+    color: #ffffff;
+    font-size: 14px;
     outline: none;
-    border-color: #c8f567;
+    margin-bottom: 24px;
+    font-family: 'DM Sans', Arial, sans-serif;
 }
 
-#add-form button {
-    width: 100%;
-    padding: 0.9rem;
-    background: #c8f567;
-    color: #0f0f13;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: 'Syne', sans-serif;
-    letter-spacing: 0.3px;
-    transition: opacity 0.2s, transform 0.1s;
+.search-bar:focus { border-color: #c8f135; }
+.search-bar::placeholder { color: #555555; }
+
+/* =====================
+   HABIT CARDS
+===================== */
+.habit-card {
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 14px;
 }
 
-#add-form button:hover {
-    opacity: 0.88;
-    transform: translateY(-1px);
-}
-
-/* ---- SUMMARY BAR ---- */
-.summary-bar {
+.card-top {
     display: flex;
-    margin-bottom: 1.5rem;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
 }
 
-.summary-bar span {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #6b6b80;
-    background: #18181f;
-    border: 1px solid #222230;
-    border-radius: 20px;
-    padding: 4px 14px;
-    margin-right: 8px;
-}
-
-/* ---- LAST DONE TEXT ---- */
-.last-done {
-    display: block;
-    font-size: 0.75rem;
-    color: #6b6b80;
-    margin-top: 4px;
-}
-
-/* ---- EMPTY STATE ---- */
-.empty-state {
-    text-align: center;
-    padding: 4rem 1rem;
-}
-
-.empty-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.8rem;
-}
-
-.empty-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #f0ede8;
-    margin-bottom: 0.4rem;
-}
-
-.empty-sub {
-    font-size: 0.9rem;
-    color: #6b6b80;
-    margin-bottom: 1.5rem;
-}
-
-.empty-btn {
-    display: inline-block;
-    padding: 0.6rem 1.4rem;
-    background: #c8f567;
-    color: #0f0f13;
-    border-radius: 8px;
-    text-decoration: none;
+.habit-name {
+    font-size: 16px;
     font-weight: 600;
-    font-size: 0.9rem;
+    flex: 1;
+    color: #ffffff;
 }
 
-.empty-btn:hover {
-    opacity: 0.85;
+.badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
 }
 
+.badge-Health  { background: #1a3a1a; color: #6fcf6f; }
+.badge-Fitness { background: #1a2a3a; color: #6fafcf; }
+.badge-Study   { background: #2a1a3a; color: #af8fe0; }
+.badge-Other   { background: #2a2a1a; color: #c8f135; }
 
-.error {
-    color: #f87171;
-    margin-bottom: 0.8rem;
-    font-size: 0.88rem;
-    background: rgba(239, 68, 68, 0.08);
-    padding: 0.5rem 0.9rem;
+.card-meta {
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 14px;
+}
+
+.streak-badge {
+    background: #2a1f0a;
+    color: #c8a435;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    font-size: 11px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-done {
+    padding: 7px 16px;
+    background: #1a2a1a;
+    color: #6fcf6f;
+    border: 1px solid #2a3a2a;
     border-radius: 8px;
-    border: 1px solid rgba(239, 68, 68, 0.15);
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: 'DM Sans', Arial, sans-serif;
 }
 
-.success {
-    color: #c8f567;
-    margin-top: 1rem;
-    font-size: 0.9rem;
+.btn-done.active {
+    background: #c8f135;
+    color: #0f0f0f;
+    border-color: #c8f135;
+    font-weight: 700;
 }
 
-.success a {
-    color: #c8f567;
+.btn-edit {
+    padding: 7px 16px;
+    background: #1a1a1a;
+    color: #888888;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'DM Sans', Arial, sans-serif;
 }
 
-.hidden {
-    display: none;
+.btn-edit:hover { background: #222222; color: #ffffff; }
+
+.btn-delete {
+    padding: 7px 16px;
+    background: #1a1a1a;
+    color: #cf4f4f;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'DM Sans', Arial, sans-serif;
 }
 
-/* ---- EMPTY STATE ---- */
-#habits-container p {
-    color: #6b6b80;
-    font-size: 0.95rem;
-    text-align: center;
-    padding: 3rem 0;
+.btn-delete:hover { border-color: #cf4f4f; }
+
+/* =====================
+   MOBILE
+===================== */
+@media (max-width: 700px) {
+    .navbar { padding: 16px 20px; }
+    .navbar ul { gap: 20px; }
+    .page {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        margin: 32px auto;
+    }
+    .left h1 { font-size: 48px; }
+    .stats-row { flex-direction: column; }
+}
+@media (max-width: 700px) {
+    .page {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+
+    .left h1 {
+        font-size: 42px;
+    }
+
+    #add-form {
+        padding: 20px;
+        margin: 0;
+        width: 100%;
+    }
+}
+/* home page container */
+.container {
+    max-width: 780px;
+    margin: 48px auto;
+    padding: 0 24px;
 }
 
-#habits-container a {
-    color: #c8f567;
-    text-decoration: none;
+/* home page big title */
+.page-title {
+    font-family: 'Syne', Arial, sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 32px;
 }
