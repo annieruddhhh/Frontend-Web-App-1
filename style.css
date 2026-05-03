@@ -1,35 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  font-family: Arial;
-  padding: 20px;
+    font-family: 'DM Sans', sans-serif;
+    background: #0f0f13;
+    color: #f0ede8;
+    min-height: 100vh;
 }
 
-button {
-  cursor: pointer;
-}
-
-.btn-delete:hover {
-    border-color: #c62828;
-}
-
-/* 7 day dots row */
-.dots-row {
+/* ---- NAVBAR ---- */
+.navbar {
     display: flex;
-    gap: 5px;
-    margin-left: auto;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: #0f0f13;
+    border-bottom: 1px solid #222230;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #ddd;
+.logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #c8f567;
+    letter-spacing: -0.5px;
 }
 
-.dot.completed { background: #4CAF50; }
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
 
-/* mobile responsive - stacks everything on small screens */
-@media (max-width: 600px) {
-    .stats-row { flex-direction: column; }
-    .form-row { flex-direction: column; }
-    .navbar input { width: 150px; }
+.navbar ul li {
+    margin-left: 2rem;
+}
+
+.navbar a {
+    color: #6b6b80;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar a.active {
+    color: #f0ede8;
+    border-bottom: 2px solid #c8f567;
+}
+
+.navbar a:hover {
+    color: #f0ede8;
+}
+
+/* ---- MAIN AREA ---- */
+main {
+    max-width: 680px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+    letter-spacing: -1px;
+    color: #f0ede8;
+}
+
+/* ---- HABIT CARD ---- */
+.habit-card {
+    background: #18181f;
+    border-radius: 16px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid #222230;
+    transition: border-color 0.2s, transform 0.15s;
+}
+
+.habit-card:hover {
+    border-color: #35354a;
+    transform: translateY(-1px);
+}
+
+.habit-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: #f0ede8;
+}
+
+.streak {
+    font-size: 0.8rem;
+    color: #c8f567;
+    font-weight: 500;
+    background: rgba(200, 245, 103, 0.1);
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+/* ---- BUTTON GROUP ---- */
+.btn-group {
+    margin-top: 1rem;
+}
+
+.btn-group button {
+    margin-right: 8px;
+    margin-top: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 0.45rem 1rem;
+    transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn-group button:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+/* ---- INDIVIDUAL BUTTONS ---- */
+.done-btn {
+    background: #c8f567;
+    color: #0f0f13;
+}
+
+.done-btn.done,
+.done-btn:disabled {
+    background: #222230;
+    color: #6b6b80;
+    cursor: default;
+    transform: none;
+    opacity: 1;
+}
+
+.edit-btn {
+    background: #2a2a3a;
+    color: #a0a0be;
+    border: 1px solid #35354a !important;
+}
+
+.delete-btn {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.2) !important;
+}
+
+.suggest-btn {
+    background: rgba(167, 139, 250, 0.12);
+    color: #a78bfa;
+    border: 1px solid rgba(167, 139, 250, 0.2) !important;
+}
+
+/* ---- EDIT BOX ---- */
+.edit-box {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #222230;
+}
+
+.edit-box input {
+    padding: 0.5rem 0.9rem;
+    border: 1px solid #35354a;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    width: 58%;
+    margin-right: 8px;
+    background: #0f0f13;
+    color: #f0ede8;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.edit-box input:focus {
+    outline: none;
+    border-color: #c8f567;
+}
+
+.edit-box button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: #c8f567;
+    color: #0f0f13;
+    margin-right: 6px;
+    transition: opacity 0.15s;
+}
+
+.edit-box button:hover {
+    opacity: 0.85;
+}
+
+.edit-box button:last-child {
+    background: #2a2a3a;
+    color: #6b6b80;
+    border: 1px solid #35354a;
+}
+
+/* ---- TIPS BOX ---- */
+.tips-box {
+    margin-top: 1rem;
+    background: rgba(167, 139, 250, 0.07);
+    border: 1px solid rgba(167, 139, 250, 0.15);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.88rem;
+    color: #c4b5fd;
+}
+
+.tips-box strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #a78bfa;
+    font-size: 0.85rem;
+}
+
+.tips-box ul {
+    padding-left: 1.1rem;
+}
+
+.tips-box li {
+    margin-bottom: 0.35rem;
+    color: #b8b0d8;
+}
+
+/* ---- ADD HABIT FORM ---- */
+#add-form {
+    background: #18181f;
+    padding: 2.2rem;
+    border-radius: 16px;
+    border: 1px solid #222230;
+}
+
+#add-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    font-size: 0.85rem;
+    color: #a0a0be;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#add-form input {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid #35354a;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    background: #0f0f13;
+    color: #f0ede8;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+}
+
+#add-form input::placeholder {
+    color: #3a3a50;
+}
+
+#add-form input:focus {
+    outline: none;
+    border-color: #c8f567;
+}
+
+#add-form button {
+    width: 100%;
+    padding: 0.9rem;
+    background: #c8f567;
+    color: #0f0f13;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+#add-form button:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+/* ---- SUMMARY BAR ---- */
+.summary-bar {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.summary-bar span {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6b6b80;
+    background: #18181f;
+    border: 1px solid #222230;
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-right: 8px;
+}
+
+/* ---- LAST DONE TEXT ---- */
+.last-done {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b6b80;
+    margin-top: 4px;
+}
+
+/* ---- EMPTY STATE ---- */
+.empty-state {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.empty-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f0ede8;
+    margin-bottom: 0.4rem;
+}
+
+.empty-sub {
+    font-size: 0.9rem;
+    color: #6b6b80;
+    margin-bottom: 1.5rem;
+}
+
+.empty-btn {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    background: #c8f567;
+    color: #0f0f13;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.empty-btn:hover {
+    opacity: 0.85;
+}
+
+
+.error {
+    color: #f87171;
+    margin-bottom: 0.8rem;
+    font-size: 0.88rem;
+    background: rgba(239, 68, 68, 0.08);
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+.success {
+    color: #c8f567;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.success a {
+    color: #c8f567;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ---- EMPTY STATE ---- */
+#habits-container p {
+    color: #6b6b80;
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 3rem 0;
+}
+
+#habits-container a {
+    color: #c8f567;
+    text-decoration: none;
 }
