@@ -1,32 +1,23 @@
+const API = "http://127.0.0.1:5000"
+
 async function addHabit() {
 
-    // get values
-    const name = document.getElementById("habit-name").value
+    const name = document.getElementById("habit-name").value.trim()
     const category = document.getElementById("habit-category").value
     const frequency = document.getElementById("habit-frequency").value
 
-    // message elements
     const errorMsg = document.getElementById("error-msg")
     const successMsg = document.getElementById("success-msg")
 
-    // validation
-    if (name == "") {
-        errorMsg.textContent = "Enter habit name"
+    errorMsg.textContent = ""
+    successMsg.textContent = ""
+
+    if (!name || !category || !frequency) {
+        errorMsg.textContent = "Please fill all fields"
         return
     }
 
-    if (category == "") {
-        errorMsg.textContent = "Select category"
-        return
-    }
-
-    if (frequency == "") {
-        errorMsg.textContent = "Select frequency"
-        return
-    }
-
-    // send data to flask
-    const response = await fetch("http://127.0.0.1:5000/habits", {
+    const response = await fetch(API + "/habits", {
 
         method: "POST",
 
@@ -43,16 +34,14 @@ async function addHabit() {
         `
     })
 
-    const data = await response.json()
+    if (!response.ok) {
+        errorMsg.textContent = "Failed to add habit"
+        return
+    }
 
-    // success message
     successMsg.textContent = "Habit Added Successfully"
 
-    // clear inputs
     document.getElementById("habit-name").value = ""
     document.getElementById("habit-category").value = ""
     document.getElementById("habit-frequency").value = ""
-
-    console.log(data)
-
 }
