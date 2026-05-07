@@ -367,3 +367,6 @@ body {
     color: #ffffff;
     margin-bottom: 32px;
 }
+.hidden {
+    display: none !important;
+}

@@ -1,73 +1,58 @@
 async function addHabit() {
-    const nameInput = document.getElementById("habit-name")
-    const categoryInput = document.getElementById("habit-category")
-    const frequencyInput = document.getElementById("habit-frequency")
+
+    // get values
+    const name = document.getElementById("habit-name").value
+    const category = document.getElementById("habit-category").value
+    const frequency = document.getElementById("habit-frequency").value
+
+    // message elements
     const errorMsg = document.getElementById("error-msg")
     const successMsg = document.getElementById("success-msg")
-    const btn = document.getElementById("add-btn")
 
-    const name = nameInput.value.trim()
-    const category = categoryInput.value
-    const frequency = frequencyInput.value
-
-    // frontend validation
-    if (!name) {
-        errorMsg.textContent = "Please enter a habit name."
-        errorMsg.classList.remove("hidden")
-        return
-    }
-    if (!category) {
-        errorMsg.textContent = "Please select a category."
-        errorMsg.classList.remove("hidden")
-        return
-    }
-    if (!frequency) {
-        errorMsg.textContent = "Please select a frequency."
-        errorMsg.classList.remove("hidden")
+    // validation
+    if (name == "") {
+        errorMsg.textContent = "Enter habit name"
         return
     }
 
-    errorMsg.classList.add("hidden")
+    if (category == "") {
+        errorMsg.textContent = "Select category"
+        return
+    }
 
-    // disable button while sending
-    btn.disabled = true
-    btn.textContent = "Adding..."
+    if (frequency == "") {
+        errorMsg.textContent = "Select frequency"
+        return
+    }
 
-    try {
-        const response = await fetch("http://localhost:5001/habits", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                name: name,
-                category: category,
-                frequency: frequency
-            })
-        })
+    // send data to flask
+    const response = await fetch("http://localhost:5001/habits", {
 
-        const data = await response.json()
+        method: "POST",
 
-        if (response.ok) {
-            // clear all fields
-            nameInput.value = ""
-            categoryInput.value = ""
-            frequencyInput.value = ""
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-            // show success message
-            successMsg.classList.remove("hidden")
-            btn.textContent = "Add Habit"
-            btn.disabled = false
-
-        } else {
-            errorMsg.textContent = data.error
-            errorMsg.classList.remove("hidden")
-            btn.textContent = "Add Habit"
-            btn.disabled = false
+        body: `
+        {
+            "name":"${name}",
+            "category":"${category}",
+            "frequency":"${frequency}"
         }
+        `
+    })
 
-    } catch (err) {
-        errorMsg.textContent = "Cannot connect to Flask. Make sure it is running."
-        errorMsg.classList.remove("hidden")
-        btn.textContent = "Add Habit"
-        btn.disabled = false
-    }
+    const data = await response.json()
+
+    // success message
+    successMsg.textContent = "Habit Added Successfully"
+
+    // clear inputs
+    document.getElementById("habit-name").value = ""
+    document.getElementById("habit-category").value = ""
+    document.getElementById("habit-frequency").value = ""
+
+    console.log(data)
+
 }
